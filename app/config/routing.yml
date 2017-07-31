@@ -5,6 +5,15 @@
 # the routes in YAML, XML or PHP files.
 # See https://symfony.com/doc/current/book/routing.html
 app:
+    resource: '@AddressBookBundle/Controller/'
+    type:     annotation
+    prefix:   /{_locale}/contact
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
+
+app2:
     resource: '@AppBundle/Controller/'
     type:     annotation
     prefix:   /{_locale}

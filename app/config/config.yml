@@ -17,6 +17,10 @@ parameters:
     app_locales: en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl|hr|zh_CN
     app.notifications.email_sender: anonymous@example.com
 
+    redis_host: redis
+    redis_port: 6379
+    redis_db: 1
+
 # Basic configuration for the Symfony framework features
 framework:
     # The 'ide' option turns all of the file paths in an exception page
@@ -56,10 +60,11 @@ framework:
         # to avoid collisions when multiple apps share the same cache backend (e.g. a Redis server)
         # See https://symfony.com/doc/current/reference/configuration/framework.html#prefix-seed
         prefix_seed: symfony-demo
-
+        app: cache.adapter.redis
+        default_redis_provider: "redis://redis:6379/5"
 # Twig Configuration (used for rendering application templates)
 twig:
-    debug:            '%kernel.debug%'
+    debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'form/layout.html.twig'

@@ -50,3 +50,33 @@ services:
     slugger:
         alias: AppBundle\Utils\Slugger
         public: true
+
+    AddressBookBundle\Repository\RedisFactory: ~
+
+    Redis:
+        class: Redis
+        factory:   'AddressBookBundle\Repository\RedisFactory:createRedis'
+        arguments:
+          $host: '%redis_host%'
+          $port: '%redis_port%'
+          $db: '%redis_db%'
+        public: true
+
+    AddressBookBundle\Repository\AddressBookRepository:
+        public: true
+
+    # makes classes in src/AddressBookBundle available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    AddressBookBundle\:
+        resource: '../../src/AddressBookBundle/*'
+        public: true
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/AddressBookBundle/{Controller,Utils}'
+
+    # controllers are imported separately to make sure they're public
+    # and have a tag that allows actions to type-hint services
+    AddressBookBundle\Controller\:
+        resource: '../../src/AddressBookBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
