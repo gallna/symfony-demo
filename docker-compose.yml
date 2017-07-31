@@ -1,0 +1,34 @@
+version: '2.1'
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    expose:
+    - 6379
+
+  app:
+    image: gallna/php.apache:7.1
+    # build: ./docker
+    working_dir: /var/www/html
+    volumes:
+    - ./:/var/www/html
+    ports:
+    - 80:80
+    - 8080:8080
+    links:
+    - redis
+    environment:
+      REDIS_PORT: 6379
+      REDIS_HOST: redis
+
+  composer:
+    image: gallna/php.apache:7.1
+    command: bin/composer.phar install --ignore-platform-reqs
+    volumes_from:
+    - app
+    links:
+    - redis
+    environment:
+      REDIS_PORT: 6379
+      REDIS_HOST: redis
