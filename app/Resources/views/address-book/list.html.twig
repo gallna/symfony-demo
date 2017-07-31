@@ -1,0 +1,35 @@
+{% extends 'address-book/layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/search.js') }}"></script>
+{% endblock %}
+
+{% block body_id 'address_book_index' %}
+
+{% block main %}
+    {% for post in posts %}
+        <article class="post">
+            <h2>
+                <a href="{{ path('address_book_item', {slug: post.slug}) }}">
+                    {{ post.name }}
+                </a>
+            </h2>
+
+            <p class="post-metadata">
+                <span class="metadata"><i class="fa fa-envelope"></i> {{ post.email }}</span>
+                <span class="metadata"><i class="fa fa-phone-square"></i> {{ post.phone }}</span>
+            </p>
+
+        </article>
+    {% else %}
+        <div class="well">{{ 'post.no_posts_found'|trans }}</div>
+    {% endfor %}
+</form>
+    {% if posts.haveToPaginate %}
+        <div class="navigation text-center">
+            {{ pagerfanta(posts, 'twitter_bootstrap3_translated', {routeName: 'address_book_index_paginated'}) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

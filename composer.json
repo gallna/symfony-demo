@@ -6,6 +6,7 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle/",
+            "AddressBookBundle\\": "src/AddressBookBundle/",
             "CodeExplorerBundle\\": "src/CodeExplorerBundle/"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
@@ -32,7 +33,9 @@
         "symfony/symfony"                      : "^3.3",
         "twig/extensions"                      : "^1.5",
         "twig/twig"                            : "^1.28 || ^2.0",
-        "white-october/pagerfanta-bundle"      : "^1.0"
+        "white-october/pagerfanta-bundle"      : "^1.0",
+        "fzaninotto/faker"                     : "^1.6",
+        "predis/predis"                        : "^1.1"
     },
     "require-dev": {
         "dama/doctrine-test-bundle"            : "^3.0",
@@ -47,7 +50,9 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+            "@php bin/address-book.php -u john_user",
+            "@php bin/address-book.php -u jane_admin"
         ],
         "post-install-cmd": [
             "@symfony-scripts"

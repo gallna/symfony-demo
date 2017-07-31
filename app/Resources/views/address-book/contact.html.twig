@@ -1,0 +1,21 @@
+{% extends 'address-book/layout.html.twig' %}
+
+{% block body_id 'address_book_item' %}
+
+{% block main %}
+    <h1>{{ post.name }}</h1>
+
+    <p class="post-metadata">
+        <span class="metadata"><i class="fa fa-envelope"></i> {{ post.email }}</span>
+        <span class="metadata"><i class="fa fa-phone-square"></i> {{ post.phone }}</span>
+    </p>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ include('address-book/sidebar.html.twig', {post: post}, with_context = false) }}
+
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
+{% endblock %}

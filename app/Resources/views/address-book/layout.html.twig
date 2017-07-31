@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block header_search_button %}
+    <li>
+        <a href="{{ path('address_book_search') }}">
+          <i class="fa fa-search"></i> {{ 'menu.search'|trans }}
+        </a>
+    </li>
+{% endblock %}

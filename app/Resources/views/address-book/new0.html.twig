@@ -1,0 +1,23 @@
+{% extends 'address-book/layout.html.twig' %}
+
+{% block body_id 'contact_new' %}
+
+{% block main %}
+    <h1>New Contact</h1>
+
+    {{ include('address-book/_form.html.twig', {
+        form: form,
+        button_label: 'action.save'|trans,
+        include_back_to_home_link: true,
+        save_and_create_new: true
+    }, with_context = false) }}
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ include('address-book/sidebar.html.twig', {post: post}, with_context = false) }}
+
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
+{% endblock %}
