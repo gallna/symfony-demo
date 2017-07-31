@@ -25,11 +25,23 @@
     {% else %}
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
-</form>
+
     {% if posts.haveToPaginate %}
         <div class="navigation text-center">
             {{ pagerfanta(posts, 'twitter_bootstrap3_translated', {routeName: 'address_book_index_paginated'}) }}
         </div>
     {% endif %}
 
+{% endblock %}
+
+
+{% block sidebar %}
+    <div class="section">
+        <a href="{{ path('contact_new') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-edit" aria-hidden="true"></i> Add contact
+        </a>
+    </div>
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
 {% endblock %}

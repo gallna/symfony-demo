@@ -38,9 +38,7 @@ class ContactController extends Controller
     {
         $contact = new Contact();
         $contact->setUsername($this->getUser()->getUsername());
-        $contact->setName("abc def");
-        $contact->setEmail("abc@def.gh");
-        $contact->setPhone(123456);
+        
         // See https://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(ContactType::class, $contact)
             ->add('saveAndCreateNew', SubmitType::class);
